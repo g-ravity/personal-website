@@ -8,7 +8,14 @@ import Seo from "../components/seo"
 type DataProps = {
   site: {
     buildTime: string
-  }
+    siteMetadata:{
+      title: string;
+      description: string
+    };
+    myjson:{
+project: string
+    }
+  };
 }
 
 const UsingTypescript: React.FC<PageProps<DataProps>> = ({ data, path }) => (
@@ -28,6 +35,8 @@ const UsingTypescript: React.FC<PageProps<DataProps>> = ({ data, path }) => (
       You're currently on the page "{path}" which was built on{" "}
       {data.site.buildTime}.
     </p>
+    <p>{data.site.siteMetadata.title}</p>
+    <p>{data.site.myjson.project}</p>
     <p>
       To learn more, head over to our{" "}
       <a href="https://www.gatsbyjs.com/docs/typescript/">
@@ -45,6 +54,13 @@ export const query = graphql`
   {
     site {
       buildTime(formatString: "YYYY-MM-DD hh:mm a z")
+      siteMetadata {
+        title
+        description
+      }
+      myjson{
+        project
+      }
     }
   }
 `
